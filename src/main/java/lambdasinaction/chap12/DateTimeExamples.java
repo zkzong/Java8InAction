@@ -1,8 +1,5 @@
 package lambdasinaction.chap12;
 
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
-import static java.time.temporal.TemporalAdjusters.nextOrSame;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -23,9 +20,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
+
 public class DateTimeExamples {
 
     private static final ThreadLocal<DateFormat> formatters = new ThreadLocal<DateFormat>() {
+        @Override
         protected DateFormat initialValue() {
             return new SimpleDateFormat("dd-MMM-yyyy");
         }
@@ -115,8 +116,12 @@ public class DateTimeExamples {
         date = date.with(temporal -> {
             DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
             int dayToAdd = 1;
-            if (dow == DayOfWeek.FRIDAY) dayToAdd = 3;
-            if (dow == DayOfWeek.SATURDAY) dayToAdd = 2;
+            if (dow == DayOfWeek.FRIDAY) {
+                dayToAdd = 3;
+            }
+            if (dow == DayOfWeek.SATURDAY) {
+                dayToAdd = 2;
+            }
             return temporal.plus(dayToAdd, ChronoUnit.DAYS);
         });
         System.out.println(date);
@@ -127,8 +132,12 @@ public class DateTimeExamples {
         public Temporal adjustInto(Temporal temporal) {
             DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
             int dayToAdd = 1;
-            if (dow == DayOfWeek.FRIDAY) dayToAdd = 3;
-            if (dow == DayOfWeek.SATURDAY) dayToAdd = 2;
+            if (dow == DayOfWeek.FRIDAY) {
+                dayToAdd = 3;
+            }
+            if (dow == DayOfWeek.SATURDAY) {
+                dayToAdd = 2;
+            }
             return temporal.plus(dayToAdd, ChronoUnit.DAYS);
         }
     }

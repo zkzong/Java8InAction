@@ -8,8 +8,8 @@ public class WordCount {
 
     public static final String SENTENCE =
             " Nel   mezzo del cammin  di nostra  vita " +
-            "mi  ritrovai in una  selva oscura" +
-            " che la  dritta via era   smarrita ";
+                    "mi  ritrovai in una  selva oscura" +
+                    " che la  dritta via era   smarrita ";
 
     public static void main(String[] args) {
         System.out.println("Found " + countWordsIteratively(SENTENCE) + " words");
@@ -23,7 +23,9 @@ public class WordCount {
             if (Character.isWhitespace(c)) {
                 lastSpace = true;
             } else {
-                if (lastSpace) counter++;
+                if (lastSpace) {
+                    counter++;
+                }
                 lastSpace = Character.isWhitespace(c);
             }
         }
@@ -41,8 +43,8 @@ public class WordCount {
 
     private static int countWords(Stream<Character> stream) {
         WordCounter wordCounter = stream.reduce(new WordCounter(0, true),
-                                                WordCounter::accumulate,
-                                                WordCounter::combine);
+                WordCounter::accumulate,
+                WordCounter::combine);
         return wordCounter.getCounter();
     }
 
@@ -59,7 +61,7 @@ public class WordCount {
             if (Character.isWhitespace(c)) {
                 return lastSpace ? this : new WordCounter(counter, true);
             } else {
-                return lastSpace ? new WordCounter(counter+1, false) : this;
+                return lastSpace ? new WordCounter(counter + 1, false) : this;
             }
         }
 

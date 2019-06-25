@@ -49,18 +49,22 @@ public class LazyLists {
             this.tail = tail;
         }
 
+        @Override
         public T head() {
             return head;
         }
 
+        @Override
         public MyList<T> tail() {
             return tail;
         }
 
+        @Override
         public boolean isEmpty() {
             return false;
         }
 
+        @Override
         public MyList<T> filter(Predicate<T> p) {
             return isEmpty() ? this : p.test(head()) ? new MyLinkedList<>(
                     head(), tail().filter(p)) : tail().filter(p);
@@ -68,14 +72,17 @@ public class LazyLists {
     }
 
     static class Empty<T> implements MyList<T> {
+        @Override
         public T head() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public MyList<T> tail() {
             throw new UnsupportedOperationException();
         }
 
+        @Override
         public MyList<T> filter(Predicate<T> p) {
             return this;
         }
@@ -90,18 +97,22 @@ public class LazyLists {
             this.tail = tail;
         }
 
+        @Override
         public T head() {
             return head;
         }
 
+        @Override
         public MyList<T> tail() {
             return tail.get();
         }
 
+        @Override
         public boolean isEmpty() {
             return false;
         }
 
+        @Override
         public MyList<T> filter(Predicate<T> p) {
             return isEmpty() ? this : p.test(head()) ? new LazyList<>(head(),
                     () -> tail().filter(p)) : tail().filter(p);
