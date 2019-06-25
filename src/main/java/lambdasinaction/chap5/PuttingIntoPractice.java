@@ -39,7 +39,6 @@ public class PuttingIntoPractice {
         System.out.println(cities);
 
         // Query 3: Find all traders from Cambridge and sort them by name.
-
         List<Trader> traders =
                 transactions.stream()
                         .map(Transaction::getTrader)
@@ -51,7 +50,6 @@ public class PuttingIntoPractice {
 
 
         // Query 4: Return a string of all traders’ names sorted alphabetically.
-
         String traderStr =
                 transactions.stream()
                         .map(transaction -> transaction.getTrader().getName())
@@ -61,7 +59,6 @@ public class PuttingIntoPractice {
         System.out.println(traderStr);
 
         // Query 5: Are there any trader based in Milan?
-
         boolean milanBased =
                 transactions.stream()
                         .anyMatch(transaction -> transaction.getTrader()
